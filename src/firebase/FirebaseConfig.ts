@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import * as firebaseui from "firebaseui";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { getMessaging } from "firebase/messaging";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,8 +19,16 @@ const firebaseConfig = {
 
 export const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);
-export const firebaseUi = new firebaseui.auth.AuthUI(firebaseAuth);
-export const firebaseDb = getFirestore(firebaseApp);
+const firebaseUi = new firebaseui.auth.AuthUI(firebaseAuth);
+const firebaseDb = getFirestore(firebaseApp);
+const firebaseStorage = getStorage(firebaseApp);
+const firebaseMessaging = getMessaging(firebaseApp);
 
 firebaseAuth.useDeviceLanguage();
-export { firebaseAuth };
+export { 
+  firebaseAuth,
+  firebaseUi,
+  firebaseDb,
+  firebaseStorage,
+  firebaseMessaging,
+};
